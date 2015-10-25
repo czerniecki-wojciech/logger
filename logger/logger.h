@@ -5,7 +5,9 @@
 #include <iostream>
 #include <string>
 
-class LoggerImp
+#include "ilogger.h"
+
+class LoggerImp : public ILogger
 {
 private:
     std::ofstream file;
