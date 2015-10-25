@@ -12,17 +12,17 @@ LoggerImp::~LoggerImp()
     std::cout << "End of logger session" << std::endl;
 }
 
-LoggerImp& operator<< (LoggerImp &logger, std::ostream& (*f)(std::ostream &)) {
-  f(std::cout);
-  return logger;
+void LoggerImp::log (const char* arg)
+{
+    std::cout << arg << std::endl;
 }
 
-LoggerImp& operator<< (LoggerImp &logger, std::ostream& (*f)(std::ios &)) {
-  f(std::cout);
-  return logger;
+void LoggerImp::log (const int arg)
+{
+    std::cout << arg << std::endl;
 }
 
-LoggerImp& operator<< (LoggerImp &logger, std::ostream& (*f)(std::ios_base &)) {
-  f(std::cout);
-  return logger;
+void LoggerImp::log (const double arg)
+{
+    std::cout << arg << std::endl;
 }

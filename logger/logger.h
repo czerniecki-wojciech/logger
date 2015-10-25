@@ -14,17 +14,13 @@ public:
     LoggerImp();
     LoggerImp(const LoggerImp&) = delete;
 
-    ~LoggerImp();
+    virtual ~LoggerImp();
 
     LoggerImp& operator=(const LoggerImp&) = delete;
 
-    template<typename T>
-    LoggerImp& operator<< (const T &arg)
-    {
-        std::cout << arg;
-
-        return *this;
-    }
+    virtual void log (const char* arg);
+    virtual void log (const int arg);
+    virtual void log (const double arg);
 };
 
 #endif // LOGGER_H
