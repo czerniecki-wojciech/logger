@@ -18,16 +18,16 @@ public:
     LoggerDecorator(std::shared_ptr<ILogger> logger, const char* prefix = NULL, const char* postfix = NULL)
         : logger(logger)
     {
-//        if(prefix) {
-//            this->prefix = prefix;
-//        } else {
-//            this->prefix = "";
-//        }
-//        if(postfix) {
-//            this->postfix = postfix;
-//        } else {
-//            this->postfix = "";
-//        }
+        if(prefix) {
+            this->prefix = prefix;
+        } else {
+            this->prefix = "";
+        }
+        if(postfix) {
+            this->postfix = postfix;
+        } else {
+            this->postfix = "";
+        }
     }
 
     virtual ~LoggerDecorator() = default;
