@@ -6,11 +6,13 @@ CONFIG += c++11
 
 SOURCES += main.cpp \
     logger/logger.cpp \
-    logger/loggerdecorator.cpp
+    logger/loggerdecorator.cpp \
+    LoggerSingleton.cpp
 
 HEADERS += \
     logger/logger.h \
     logger/helpers/loggerSingleton.h \
     logger/ilogger.h \
-    logger/loggerdecorator.h
+    logger/loggerdecorator.h \
+    logger/loggerSingleton.h
 

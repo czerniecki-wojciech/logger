@@ -2,6 +2,7 @@
 #include <memory>
 #include <logger/loggerdecorator.h>
 #include "logger/logger.h"
+#include "logger/loggerSingleton.h"
 
 using namespace std;
 
@@ -28,6 +29,10 @@ int main()
     (*decorated_logger2).log(8.3);
 
     (*logger_with_prefix).log("this log is with prefix only");
+
+    auto singletonLogger = LoggerSingleton::getInstance();
+    singletonLogger->log("singleton");
+
     cout << "Hello World!" << endl;
     return 0;
 }

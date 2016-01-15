@@ -4,11 +4,13 @@
 #include <memory>
 #include <mutex>
 
+#include "logger.h"
+
 
 class LoggerSingleton
 {
 private:
-    static std::unique_ptr<Logger> instance_holder; //holder for logger instance
+    static std::shared_ptr<LoggerImp> instance; //holder for logger instance
     static std::once_flag flag; //flag used during initialization
 
     LoggerSingleton() = default; //default ctor
@@ -16,12 +18,13 @@ public:
     LoggerSingleton(const LoggerSingleton&) = delete; //copt-ctro removed
     LoggerSingleton& operator=(const LoggerSingleton&) = delete; //asign operator removed
 
-    static Logger& instance()
+    static std::shared_ptr<LoggerImp> getInstance()
+    //static LoggerImp& getInstance()
     {
         std::call_once(flag, [] {
-            instance_holder.reset(new Logger());
+            instance = std::make_shared<LoggerImp>();
         });
-        return *instance_holder;
+        return instance;
     }
 };
 
