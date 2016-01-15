@@ -1,4 +1,4 @@
-#include "loggerdecorator.h"
+#include "LoggerDecorator.h"
 
 void LoggerDecorator::log(const char *arg)
 {

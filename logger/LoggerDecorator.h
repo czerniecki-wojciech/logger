@@ -1,21 +1,20 @@
-#include "ilogger.h"
-#include "logger.h"
+#include "IAdapter.h"
 #include <memory>
 #include <string>
 
 #ifndef LOGGERDECORATOR_H
 #define LOGGERDECORATOR_H
 
-class LoggerDecorator : public ILogger
+class LoggerDecorator : public IAdapter
 {
 private:
-    std::shared_ptr<ILogger> logger;
+    std::shared_ptr<IAdapter> logger;
     std::string prefix;
     std::string postfix;
 
 public:
     LoggerDecorator() = delete;
-    LoggerDecorator(std::shared_ptr<ILogger> logger, const char* prefix = NULL, const char* postfix = NULL)
+    LoggerDecorator(std::shared_ptr<IAdapter> logger, const char* prefix = NULL, const char* postfix = NULL)
         : logger(logger)
     {
         if(prefix) {

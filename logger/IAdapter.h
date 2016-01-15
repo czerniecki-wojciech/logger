@@ -2,10 +2,12 @@
 #define ILOGGER_H
 
 //interface for logger and its decorators
-class ILogger
+#include <vector>
+
+class IAdapter
 {
 public:
-    virtual ~ILogger() = default;
+    virtual ~IAdapter() = default;
 
     virtual void log (const char* arg) = 0;
     virtual void log (const int arg) = 0;
