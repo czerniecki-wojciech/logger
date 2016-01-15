@@ -14,11 +14,11 @@ private:
     std::string file_name = "log.log";
 public:
     LoggerImp();
-    LoggerImp(const LoggerImp&) = delete;
+    //LoggerImp(const LoggerImp&) = delete;
 
     virtual ~LoggerImp();
 
-    LoggerImp& operator=(const LoggerImp&) = delete;
+    //LoggerImp& operator=(const LoggerImp&) = delete;
 
     virtual void log (const char* arg);
     virtual void log (const int arg);

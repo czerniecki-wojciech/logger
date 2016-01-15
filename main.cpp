@@ -30,8 +30,7 @@ int main()
 
     (*logger_with_prefix).log("this log is with prefix only");
 
-    auto singletonLogger = LoggerSingleton::getInstance();
-    singletonLogger->log("singleton");
+    LoggerSingleton::getInstance()->log("singleton");
 
     cout << "Hello World!" << endl;
     return 0;
