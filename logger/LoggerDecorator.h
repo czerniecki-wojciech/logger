@@ -14,20 +14,8 @@ private:
 
 public:
     LoggerDecorator() = delete;
-    LoggerDecorator(std::shared_ptr<IAdapter> logger, const char* prefix = NULL, const char* postfix = NULL)
-        : logger(logger)
-    {
-        if(prefix) {
-            this->prefix = prefix;
-        } else {
-            this->prefix = "";
-        }
-        if(postfix) {
-            this->postfix = postfix;
-        } else {
-            this->postfix = "";
-        }
-    }
+    LoggerDecorator(std::shared_ptr<IAdapter> logger, const char* prefix = NULL, const char* postfix = NULL);
+    LoggerDecorator(IAdapter* logger, const char* prefix = NULL, const char* postfix = NULL);
 
     virtual ~LoggerDecorator() = default;
 
@@ -37,5 +25,8 @@ public:
     virtual void log(const int arg);
     virtual void log(const double arg);
 };
+/*! \class LoggerDecorator
+ *  \brief Decorates adapters (IAdapter) and class derived from IAdapter.
+ */
 
 #endif // LOGGERDECORATOR_H

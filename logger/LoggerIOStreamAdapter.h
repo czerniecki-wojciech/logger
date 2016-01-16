@@ -18,5 +18,8 @@ public:
     virtual void log (const int arg);
     virtual void log (const double arg);
 };
+/*! \class LoggerIOStreamAdapter
+ *  \brief Allows LoggerSingleton to write on standart output stream.
+ */
 
 #endif // LOGGERIOSTREAMADAPTER_H

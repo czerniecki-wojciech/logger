@@ -1,8 +1,6 @@
 #ifndef IADAPTER_H
 #define IADAPTER_H
 
-#include <vector>
-
 class IAdapter
 {
 public:
@@ -12,5 +10,8 @@ public:
     virtual void log (const int arg) = 0;
     virtual void log (const double arg) = 0;
 };
+/*! \class IAdapter
+ *  \brief Defines interface for LoggerSingleton
+ */
 
 #endif // IADAPTER_H

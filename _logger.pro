@@ -7,7 +7,8 @@ CONFIG += c++11
 SOURCES += main.cpp \
     logger/LoggerIOStreamAdapter.cpp \
     logger/LoggerDecorator.cpp \
-    logger/LoggerFileAdapter.cpp
+    logger/LoggerFileAdapter.cpp \
+    logger/LoggerSingleton.cpp
 
 HEADERS += \
     logger/helpers/loggerSingleton.h \

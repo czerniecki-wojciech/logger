@@ -1,4 +1,4 @@
-#include <iostream>
+
 #include <memory>
 
 #include "logger/LoggerSingleton.h"
@@ -24,7 +24,13 @@ int main()
     LoggerSingleton::getInstance()->addAdapter(fileLogger_with_prefix);
 
     //sample of login - both for console output and for file output
-    LoggerSingleton::getInstance()->log("singleton123");
+    LoggerSingleton::getInstance()->log("this shoult to be saved");
+
+    std::shared_ptr<IAdapter> dedicated =
+            std::make_shared<LoggerDecorator>(
+                LoggerSingleton::getInstance(), "dedicated: ");
+
+    dedicated->log(3);
 
     return 0;
 }

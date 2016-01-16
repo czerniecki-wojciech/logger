@@ -2,7 +2,6 @@
 #define LOGGERSINGLETON_H
 
 #include <memory>
-#include <mutex>
 #include <vector>
 #include <algorithm>
 
@@ -15,88 +14,28 @@
 class LoggerSingleton : public IAdapter
 {
 private:
-    static LoggerSingleton* instance; //holder for LoggerSingleton instance
-    std::vector<std::shared_ptr<IAdapter>> adapters; //adapters used to print important things
+    static LoggerSingleton* instance;
+    std::vector<std::shared_ptr<IAdapter>> adapters;
+
     LoggerSingleton() = default;
-    ~LoggerSingleton()
-    {
-        this->removeAllAdapters();
-    }
+    ~LoggerSingleton();
+
     LoggerSingleton& operator=(LoggerSingleton&) = delete;
 
 public:
-    static LoggerSingleton* getInstance()
-    {
-        if(!instance)
-            instance = new LoggerSingleton();
+    static LoggerSingleton* getInstance();
 
-        return instance;
-    }
-
-    void addAdapter(std::shared_ptr<IAdapter> adapter)
-    {
-        adapters.push_back(adapter);
-    }
-
-    void removeAllAdapters()
-    {
-        adapters.clear();
-    }
-
-    void destroy_instance()
-    {
-        instance->removeAllAdapters();
-        delete instance;
-        instance = nullptr;
-    }
+    void addAdapter(std::shared_ptr<IAdapter> adapter);
+    void removeAllAdapters();
+    void destroy_instance();
 
     //Logging interface
-    void log (const char* arg)
-    {
-        if(adapters.size())
-        {
-            std::for_each(adapters.begin(), adapters.end(), [&arg](std::shared_ptr<IAdapter> adapter)
-            {
-                adapter->log(arg);
-            });
-        }
-        else
-        {
-            throw NoAdaptersError();
-        }
-    }
-
-    void log (const int arg)
-    {
-        if(adapters.size())
-        {
-            std::for_each(adapters.begin(), adapters.end(), [&arg](std::shared_ptr<IAdapter> adapter)
-            {
-                adapter->log(arg);
-            });
-        }
-        else
-        {
-            throw NoAdaptersError();
-        }
-    }
-
-    void log (const double arg)
-    {
-        if(adapters.size())
-        {
-            std::for_each(adapters.begin(), adapters.end(), [&arg](std::shared_ptr<IAdapter> adapter)
-            {
-                adapter->log(arg);
-            });
-        }
-        else
-        {
-            throw NoAdaptersError();
-        }
-    }
+    void log (const char* arg);
+    void log (const int arg);
+    void log (const double arg);
 };
-
-LoggerSingleton* LoggerSingleton::instance = nullptr; //initialization of instance with nullptr on startup
+/*! \class LoggerSingleton
+ *  \brief Main class of whole module, it is based on singleton pattern.
+ */
 
 #endif // LOGGERSINGLETON_H
