@@ -1,7 +1,6 @@
-#ifndef ILOGGER_H
-#define ILOGGER_H
+#ifndef IADAPTER_H
+#define IADAPTER_H
 
-//interface for logger and its decorators
 #include <vector>
 
 class IAdapter
@@ -14,4 +13,4 @@ public:
     virtual void log (const double arg) = 0;
 };
 
-#endif // ILOGGER_H
+#endif // IADAPTER_H

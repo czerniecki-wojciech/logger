@@ -1,5 +1,5 @@
-#ifndef LOGGER_H
-#define LOGGER_H
+#ifndef LOGGERIOSTREAMADAPTER_H
+#define LOGGERIOSTREAMADAPTER_H
 
 #include <iostream>
 #include <string>
@@ -19,4 +19,4 @@ public:
     virtual void log (const double arg);
 };
 
-#endif // LOGGER_H
+#endif // LOGGERIOSTREAMADAPTER_H

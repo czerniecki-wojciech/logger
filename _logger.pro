@@ -6,12 +6,15 @@ CONFIG += c++11
 
 SOURCES += main.cpp \
     logger/LoggerIOStreamAdapter.cpp \
-    logger/LoggerDecorator.cpp
+    logger/LoggerDecorator.cpp \
+    logger/LoggerFileAdapter.cpp
 
 HEADERS += \
     logger/helpers/loggerSingleton.h \
     logger/IAdapter.h \
     logger/LoggerIOStreamAdapter.h \
     logger/LoggerSingleton.h \
-    logger/LoggerDecorator.h
+    logger/LoggerDecorator.h \
+    logger/NoAdaptersError.h \
+    logger/LoggerFileAdapter.h
 

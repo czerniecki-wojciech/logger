@@ -1,38 +1,31 @@
 #include <iostream>
 #include <memory>
-#include "logger/LoggerDecorator.h"
-#include "logger/LoggerIOStreamAdapter.h"
+
 #include "logger/LoggerSingleton.h"
-
-using namespace std;
-
-std::shared_ptr<LoggerIOStreamAdapter> logger;
-//std::shared_ptr<LoggerDecorator> decorated_logger = std::make_shared<LoggerDecorator>(logger, "prefix1 ", " postfix1");
-//std::shared_ptr<LoggerDecorator> decorated_logger2 = std::make_shared<LoggerDecorator>(decorated_logger, "prefix2 ", " postfix2");
-//std::shared_ptr<LoggerDecorator> logger_with_prefix = std::make_shared<LoggerDecorator>(logger, "only_prefix: ");
 
 int main()
 {
-    (*logger).log("Hello logger!");
-    (*logger).log(10);
-    (*logger).log(9.1);
-    (*logger).log(8.3);
-/*
-    (*decorated_logger).log("decorated text");
-    (*decorated_logger).log(10);
-    (*decorated_logger).log(9.1);
-    (*decorated_logger).log(8.3);
+    //setup default console adapter
+    std::shared_ptr<IAdapter> consoleLogger = std::make_shared<LoggerIOStreamAdapter>();
+    //setup adapter for file log.log
+    std::shared_ptr<IAdapter> fileLogger = std::make_shared<LoggerFileAdapter>("log.log");
 
-    (*decorated_logger2).log("decorated text");
-    (*decorated_logger2).log(10);
-    (*decorated_logger2).log(9.1);
-    (*decorated_logger2).log(8.3);
+    //decorate console adapter with prefix and postfix
+    std::shared_ptr<IAdapter> consoleLogger_with_prefix_and_postfix =
+            std::make_shared<LoggerDecorator>(
+                consoleLogger, "Important on console ", "!!!");
 
-    (*logger_with_prefix).log("this log is with prefix only");
+    //decorate file adapter with different prefix and without postfix
+    std::shared_ptr<IAdapter> fileLogger_with_prefix =
+            std::make_shared<LoggerDecorator>(fileLogger, "Important in file: ");
 
-    LoggerSingleton::getInstance()->log("singleton");
-*/
-    cout << "Hello World!" << endl;
+    //add created adapters to LoggerSingleton
+    LoggerSingleton::getInstance()->addAdapter(consoleLogger_with_prefix_and_postfix);
+    LoggerSingleton::getInstance()->addAdapter(fileLogger_with_prefix);
+
+    //sample of login - both for console output and for file output
+    LoggerSingleton::getInstance()->log("singleton123");
+
     return 0;
 }
 

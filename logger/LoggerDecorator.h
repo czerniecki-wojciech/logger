@@ -31,7 +31,7 @@ public:
 
     virtual ~LoggerDecorator() = default;
 
-    // ILogger interface
+    // IAdapter interface
 public:
     virtual void log(const char *arg);
     virtual void log(const int arg);
